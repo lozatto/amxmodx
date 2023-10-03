@@ -52,20 +52,16 @@ stock cmd_access(id, level, cid, num, bool:accesssilent = false)
 	{
 		has_access = 1;
 	}
-	else if (level == ADMIN_ADMIN)
-	{
-		if (is_user_admin(id))
-		{
-			has_access = 1;
-		}
-	}
 	else if (get_user_flags(id) & level)
 	{
 		has_access = 1;
 	}
 	else if (level == ADMIN_ALL)
 	{
-		has_access = 1;
+		if (is_user_admin(id))
+		{
+			has_access = 1;
+		}
 	}
 
 	if (has_access == 0)
